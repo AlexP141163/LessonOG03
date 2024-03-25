@@ -1,8 +1,6 @@
 # Импортируем и инициализируем "pygame":
 import pygame
 import random
-
-
 pygame.init() # Инициализация:
 
 SCRIN_WIDTH = 800  # Переменные, задают ширину и высоту экрана в пикселях:
@@ -32,7 +30,15 @@ color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 # закончиться работой "pygame.quit()"
 running = True
 while running:
-    pass
+    screen.fill(color) # Зальем экран рандомным цветом (fill - заливать), аргумент - переменная "color":
+    for event in pygame.event.get(): # Цикл с переменной "event" будет присваивать события "pygame.event.get()"
+        if event.type == pygame.QUIT: # Если тип события "event.type" равен "pygame.QUIT":
+            running = False           # Тогда цикл завершиться и игра закончиться:
+        if event.type == pygame.MOUSEBUTTONDOWN: # Если тип события "event.type" равен нажатию клавиши мыши:
+# Координаты нажатия клавиши мышки на экране будут браться и присваиваться процедурой "pygame.mouse.get_pos()"
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
+                target_x = mouse_x
 
 
 pygame.quit()
