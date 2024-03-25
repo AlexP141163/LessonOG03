@@ -37,8 +37,13 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN: # Если тип события "event.type" равен нажатию клавиши мыши:
 # Координаты нажатия клавиши мышки на экране будут браться и присваиваться процедурой "pygame.mouse.get_pos()"
             mouse_x, mouse_y = pygame.mouse.get_pos()
+# Условие определяет попала ли координата мышки по оси "Х" ("mouse_x") в координаты цели "target_x, target_width"
+# Другими словами координаты мышк должны быть в промежутке координат цели по оси "Х" и "У"
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
-                target_x = mouse_x
-
-
+                target_x = random.randint(0, SCRIN_WIDTH - target_width)
+                target_y = random.randint(0, SCRIN_HEIGHT - target_height)
+    # Отрисовываем на экране мишень  с координатами ("target_img, (target_x, target_y") оператором ("screen.blit"):
+    screen.blit(target_img, (target_x, target_y))
+    pygame.display.update() # Обновление экрана, Обязательно вставляем со смещением для цикла "while":
+                
 pygame.quit()
