@@ -10,6 +10,10 @@ screen = pygame.display.set_mode((SCRIN_WIDTH, SCRIN_HEIGHT))
 # Создаем заголовок экрана (set_caption - установить заголовок):
 pygame.display.set_caption("Игра Тир")
 
+font = pygame.font.Font(None, 36) # Шривт для счета:
+score = 0                                     # Инициализация переменной для счета:
+i = 0  # Инициализация переменной цикла для счета:
+text = "Счет:"
 # Загрузим иконку игры. Сохраним файл иконки в папкн "img":
 icon = pygame.image.load("img/4123.jpg")
 pygame.display.set_icon(icon) # Устанавливаем переменную "icon" с изображением как иконку:
@@ -42,8 +46,20 @@ while running:
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
                 target_x = random.randint(0, SCRIN_WIDTH - target_width)
                 target_y = random.randint(0, SCRIN_HEIGHT - target_height)
+                i += 10
+                score = i
     # Отрисовываем на экране мишень  с координатами ("target_img, (target_x, target_y") оператором ("screen.blit"):
     screen.blit(target_img, (target_x, target_y))
+
+    # Создание текстовой поверхности
+    text_surface = font.render(text, True, 0)
+    # Отображение текста
+    screen.blit(text_surface, (10, 20))
+    # Создание текстовой поверхности с числовым значением, преобразованным в строку
+    text_surface = font.render(str(score), True, 0)
+    # Отображение текста
+    screen.blit(text_surface, (80, 20))
+
     pygame.display.update() # Обновление экрана, Обязательно вставляем со смещением для цикла "while":
-                
+
 pygame.quit()
