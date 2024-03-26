@@ -4,6 +4,7 @@ import random
 import time
 
 pygame.init() # Инициализация:
+pygame.mixer.init()  # Инициализируем микшер для звука
 
 # Переменные
 
@@ -20,6 +21,8 @@ font = pygame.font.Font(None, 36) # Шривт для счета:
 score = 0  # Инициализация переменной для счета:
 text = "Счет:"
 text_final = "Вы Победили!"
+# Загрузите звук победы
+victory_sound = pygame.mixer.Sound("img/victory.wav")
 # Загрузим иконку игры. Сохраним файл иконки в папкн "img":
 icon = pygame.image.load("img/4123.jpg")
 pygame.display.set_icon(icon) # Устанавливаем переменную "icon" с изображением как иконку:
@@ -87,7 +90,10 @@ while running:
         # Отображение текста
         screen.blit(text_surface, (300, 280))
         pygame.display.update()
+        # Воспроизведение звука победы
+        victory_sound.play()
         time.sleep(5)  # Пауза на 5 секунд
+
         running = False
 
     pygame.display.update() # Обновление экрана, Обязательно вставляем со смещением для цикла "while":
