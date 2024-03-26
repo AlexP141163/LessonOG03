@@ -1,6 +1,7 @@
 # Импортируем и инициализируем "pygame":
 import pygame
 import random
+import time
 pygame.init() # Инициализация:
 
 SCRIN_WIDTH = 800  # Переменные, задают ширину и высоту экрана в пикселях:
@@ -14,6 +15,7 @@ font = pygame.font.Font(None, 36) # Шривт для счета:
 score = 0                                     # Инициализация переменной для счета:
 i = 0  # Инициализация переменной цикла для счета:
 text = "Счет:"
+text_final = "Вы Победили!"
 # Загрузим иконку игры. Сохраним файл иконки в папкн "img":
 icon = pygame.image.load("img/4123.jpg")
 pygame.display.set_icon(icon) # Устанавливаем переменную "icon" с изображением как иконку:
@@ -48,6 +50,7 @@ while running:
                 target_y = random.randint(0, SCRIN_HEIGHT - target_height)
                 i += 10
                 score = i
+
     # Отрисовываем на экране мишень  с координатами ("target_img, (target_x, target_y") оператором ("screen.blit"):
     screen.blit(target_img, (target_x, target_y))
 
@@ -59,7 +62,16 @@ while running:
     text_surface = font.render(str(score), True, 0)
     # Отображение текста
     screen.blit(text_surface, (80, 20))
+    if score > 90:
 
+        # Создание текстовой поверхности с числовым значением, преобразованным в строку
+        text_surface = font.render(str(text_final), True, 0)
+
+        # Отображение текста
+        screen.blit(text_surface, (300, 280))
+        pygame.display.update()
+        time.sleep(5)  # Пауза на 5 секунд
+        running = False
     pygame.display.update() # Обновление экрана, Обязательно вставляем со смещением для цикла "while":
 
 pygame.quit()
