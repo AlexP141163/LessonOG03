@@ -17,13 +17,15 @@ screen = pygame.display.set_mode((SCRIN_WIDTH, SCRIN_HEIGHT))
 # Создаем заголовок экрана (set_caption - установить заголовок):
 pygame.display.set_caption("Игра Тир, Победа - 100 Очков")
 
-font = pygame.font.Font(None, 36) # Шривт для счета:
+font = pygame.font.Font(None, 36) # Шрифт для счета:
 score = 0  # Инициализация переменной для счета:
 text = "Счет:"
 text_final = "Вы Победили!"
+
 # Загрузите звук победы
 victory_sound = pygame.mixer.Sound("img/victory.wav")
-# Загрузим иконку игры. Сохраним файл иконки в папкн "img":
+
+#Загрузим иконку игры. Сохраним файл иконки в папкн "img":
 icon = pygame.image.load("img/4123.jpg")
 pygame.display.set_icon(icon) # Устанавливаем переменную "icon" с изображением как иконку:
 
@@ -41,10 +43,10 @@ target_speed_y = 0.5  # Скорость движения мишени по ве
 
 # Зададим Рамдомный цвет экрана: Цвет экрана в новой версии будет постоянный:
 #color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-color = (0, 190, 180)
+color = (0, 190, 180) # Оставим цвет заливки экрана постоянным:
 
 # Условие цикла непрерывной работы программы. Как только переменная "running = false", программа
-# закончиться работой "pygame.quit()"
+# закончиться работой "pygame.quit()":
 running = True
 while running:
     screen.fill(color) # Зальем экран рандомным цветом (fill - заливать), аргумент - переменная "color":
@@ -93,7 +95,6 @@ while running:
         # Воспроизведение звука победы
         victory_sound.play()
         time.sleep(5)  # Пауза на 5 секунд
-
         running = False
 
     pygame.display.update() # Обновление экрана, Обязательно вставляем со смещением для цикла "while":
